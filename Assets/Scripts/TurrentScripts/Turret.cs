@@ -9,11 +9,11 @@ public class Turret : MonoBehaviour
 
     [Header("Cac thuoc tinh cua Town")]
     //Khai bao toc do ban
-    public float fireRate = 1f;
+    protected float fireRate = 0f;
     // Khai bao thoi gian lap lai phat ban
-    private float fireCoutdown = 0f;
+    protected float fireCoutdown = 0f;
     //Khai bao bien luu ban kinh hoat dong cua doi tuong.
-    public float range;
+    protected float range;
 
     [Header("Cac Thuoc tinh co dinh")]
 
@@ -37,7 +37,7 @@ public class Turret : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
     // Tao ham de cap nhat vi tri cua muc tieu
-    void UpdateTarget()
+    protected void UpdateTarget()
     {
         // Khai Bao Tim Enemies duoc luu tru trong Enemies voi Tag la Enemy.
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemytag);
@@ -69,29 +69,9 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
-            return;
-
-        /*********Ham dung de khoa muc tieu nen tai su dung va doc lai de hieu ro hon***********/
-        // Luu vector3 chua khoang cach tu vi tri cua doi tuong muc tieu den vi tri hien tai cua GameObject.
-        Vector3 dir = target.position - transform.position; 
-        // Class su ly van de quay. va o day se quay theo huong vector tu vi tri cua Enemy den vi tri cua GameObject
-        Quaternion lookRotation =Quaternion.LookRotation(dir);
-        // Bien doi truc quay Quaternion ve euler. euler la noi cach khac cua quay quanh truc x,y hoac z . Mot trong 3. Giong nhu la ep kieu tu int thanh float.
-        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation,lookRotation,Time.deltaTime * turnSpeed).eulerAngles;
-        // Noi cho may biet la dung goc quay euler chi de quay truc Y cua phan dau may ban phao chu khong quay cac truc khac.
-        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        //Khai bao cach hoat dong cua che do ban
-        if (fireCoutdown <= 0f)
-        {
-            Shoot();
-            // Khai bao thoi gian ban
-            fireCoutdown = 1f/ fireRate;
-        }
-        fireCoutdown -= Time.deltaTime;
+        LockTaget();
     }
-    void Shoot()
+    protected void Shoot()
     {
         // Tham chieu den mot vi tri thap Phao de lay vi tri cho vien dan
         GameObject bulletGo = (GameObject) Instantiate(bulletPrefabs, bulletLocation.position, bulletPrefabs.transform.rotation);
@@ -112,5 +92,29 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.red;
         // Ve mot duong tron day tai vi tri cua muc tieu, voi ban kinh la range.
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+    protected void LockTaget()
+    {
+        if (target == null)
+            return;
+
+        /*********Ham dung de khoa muc tieu nen tai su dung va doc lai de hieu ro hon***********/
+        // Luu vector3 chua khoang cach tu vi tri cua doi tuong muc tieu den vi tri hien tai cua GameObject.
+        Vector3 dir = target.position - transform.position;
+        // Class su ly van de quay. va o day se quay theo huong vector tu vi tri cua Enemy den vi tri cua GameObject
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
+        // Bien doi truc quay Quaternion ve euler. euler la noi cach khac cua quay quanh truc x,y hoac z . Mot trong 3. Giong nhu la ep kieu tu int thanh float.
+        Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        // Noi cho may biet la dung goc quay euler chi de quay truc Y cua phan dau may ban phao chu khong quay cac truc khac.
+        partToRotate.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+
+        //Khai bao cach hoat dong cua che do ban
+        if (fireCoutdown <= 0f)
+        {
+            Shoot();
+            // Khai bao thoi gian ban
+            fireCoutdown = 1f / fireRate;
+        }
+        fireCoutdown -= Time.deltaTime;
     }
 }

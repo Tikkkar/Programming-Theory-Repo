@@ -604,7 +604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   standardTurrentPrefab: {fileID: 3568930694111653388, guid: 60ab396130a0ca14eb800bd20bec4eb1, type: 3}
-  anotherTurrenprefab: {fileID: 3568930694111653388, guid: 60ab396130a0ca14eb800bd20bec4eb1, type: 3}
+  anotherTurrenprefab: {fileID: 502824551955898, guid: e4ec4bb225834c64abe36efeb1ef02e9, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

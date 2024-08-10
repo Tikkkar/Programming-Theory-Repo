@@ -178,7 +178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8350735293060906185}
-  - component: {fileID: 5631747840060758036}
+  - component: {fileID: 4164511114690785852}
   m_Layer: 0
   m_Name: StandTurrent
   m_TagString: Untagged
@@ -204,7 +204,7 @@ Transform:
   - {fileID: 5586276043702249947}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5631747840060758036
+--- !u!114 &4164511114690785852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,11 +213,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3568930694111653388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66dfbea3cbdda4a4dbbe836a97dcfd9f, type: 3}
+  m_Script: {fileID: 11500000, guid: bd2ecd63c947a7641b4cbbec40730d4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
-  range: 10
   partToRotate: {fileID: 1681031192186426963}
   bulletPrefabs: {fileID: 3679259265927666442, guid: 6db40c0c6898cfb4589a7b4e25128d0f, type: 3}
   bulletLocation: {fileID: 5586276043702249947}

@@ -48,7 +48,7 @@ public class Node : MonoBehaviour
         // Build a turrent.
         GameObject turrentToBuild = buildManager.GetTurrentToBuild();
         // Tạo ra bản sao khi chọn xây dựng.
-        turrent = (GameObject)Instantiate(turrentToBuild, transform.position, transform.rotation);
+        turrent = (GameObject)Instantiate(turrentToBuild, new Vector3 (transform.position.x, 0.5f,transform.position.z), transform.rotation);
     }
     // Khởi tạo sự kiện khi di chuột vào ô đất trống
     private void OnMouseEnter()
