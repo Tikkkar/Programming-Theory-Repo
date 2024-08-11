@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.PlayerLoop;
+using UnityEngine.UI;
 
 public class Node : MonoBehaviour
 {
@@ -12,9 +14,13 @@ public class Node : MonoBehaviour
     // Khởi tạo biến lưu trữ màu basic 
     public Color startColor;
     // Khởi tạo biến lấy thông tin từ Gameobject
+    [Header("Optional")]
     public GameObject turrent;
     // Start is called before the first frame update
     public BuildManager buildManager;
+ 
+    public Vector3 positionOffset;
+
    
     void Start()
     {
@@ -22,9 +28,13 @@ public class Node : MonoBehaviour
         rend = GetComponent<Renderer>();
         // Khai báo màu sắc cho biến color basic
         startColor = rend.material.color;
-       
+
     }
-    
+    public Vector3 GetBuildPosition()
+    {
+        return transform.position + positionOffset;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -38,17 +48,21 @@ public class Node : MonoBehaviour
         {
             return;
         }
+
+        if(!buildManager.CanBuild)
+        {
+            return ;
+        }
+
         // Neu nhu co thap phao o vi tri o dat do roi thi bao ve co roi.
         if (turrent != null)
         {
             Debug.Log("Co roi");
             return;
         }
-
+        buildManager.BuildTurrentOn(this);
         // Build a turrent.
-        GameObject turrentToBuild = buildManager.GetTurrentToBuild();
-        // Tạo ra bản sao khi chọn xây dựng.
-        turrent = (GameObject)Instantiate(turrentToBuild, new Vector3 (transform.position.x, 0.5f,transform.position.z), transform.rotation);
+      
     }
     // Khởi tạo sự kiện khi di chuột vào ô đất trống
     private void OnMouseEnter()
@@ -58,7 +72,7 @@ public class Node : MonoBehaviour
             return;
         }
         // Neu nhu khong co thap phao nao duoc chon thi khong lam gì cả
-        if (buildManager.GetTurrentToBuild() == null) 
+        if (buildManager.CanBuild) 
             return;
         rend.material.color = hoverColor;
       

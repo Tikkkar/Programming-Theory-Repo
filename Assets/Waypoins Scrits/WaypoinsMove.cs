@@ -5,9 +5,9 @@ using UnityEngine;
 public class WaypoinsMove : MonoBehaviour
 {
     // Stores a reference to the waypoint system this object will be use
-    [SerializeField] private Waypoins waypoints;
+    [SerializeField] protected Waypoins waypoints;
 
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] protected float moveSpeed = 5f;
 
     [Range(0f,15f)] // How fast the agent will rotate once it reaches its waypoin.
     [SerializeField] private float rotateSpeed = 4f;
@@ -38,14 +38,7 @@ public class WaypoinsMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
-        {
-            currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-            //transform.LookAt(currentWaypoint);
-
-        }
+        Bacham();
         RotateTowardsWaypoint();
         
     }
@@ -56,5 +49,16 @@ public class WaypoinsMove : MonoBehaviour
         directionToWaypoint = (currentWaypoint.position - transform.position).normalized;
         rotationGoal = Quaternion.LookRotation(directionToWaypoint);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationGoal, rotateSpeed * Time.deltaTime);
+    }
+    private void Bacham()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
+
+        if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
+        {
+            currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
+            //transform.LookAt(currentWaypoint);
+
+        }
     }
 }

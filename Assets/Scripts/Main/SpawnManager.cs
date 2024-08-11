@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     // The hien Wave nay la Wave bao nhieu.
     private float waveIndex = 1;
     // Khai bao wave quai cuoi cung.
-   [SerializeField] private float finalWave = 4f;
+    [SerializeField] private float finalWave = 4f;
     // So luong quai cua tung roud
     private float enemyNumber = 1;
 
@@ -33,14 +33,14 @@ public class SpawnManager : MonoBehaviour
     {
         gameIsActive = true;
         waveIndex = 1;
-   
+        kieuEnemy = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-       
+
+
         if (gameIsActive)
         {
             // Thiet lap thoi gian xuat hien cua moi round
@@ -56,11 +56,11 @@ public class SpawnManager : MonoBehaviour
             // In thoi gian cho Roud Tiep Theo Ra Man Hinh.
             coutDownTime.text = "Time : " + Mathf.Floor(coutdown).ToString();
         }
-        
-        
+
+
     }
-        IEnumerator WaySpawn()
-        {
+    IEnumerator WaySpawn()
+    {
         // Thiet lap wave quai cuoi cung 
         if (waveIndex < finalWave)
         {
@@ -85,22 +85,21 @@ public class SpawnManager : MonoBehaviour
             Debug.Log("Victory!");
             gameIsActive = false;
         }
-            // Chuyen tiep thanh wave tiep theo va lap lai ham tren
-             waveIndex++;
-        
-        }
+        // Chuyen tiep thanh wave tiep theo va lap lai ham tren
+        waveIndex++;
 
-        
-
-    
+    }
     void EnemyRandomSpawn()
     {
-            kieuEnemy = Random.Range(0,3);
 
-            Instantiate(enemySpawn[kieuEnemy], startPoint.transform.position, enemySpawn[kieuEnemy].transform.rotation);   
+        if (kieuEnemy < 4)
+        {
+            Instantiate(enemySpawn[kieuEnemy], startPoint.transform.position, enemySpawn[kieuEnemy].transform.rotation);
+            kieuEnemy++;
+        }
     }
 }
-    
-    
-   
-   
+
+
+
+

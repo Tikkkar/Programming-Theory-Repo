@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 3752789684307064751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.77, y: 0, z: -33.4}
+  m_LocalPosition: {x: 31.44, y: 0, z: -33.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypointSize: 0.58
-  canLoop: 1
+  canLoop: 0
   isMovingForward: 1
 --- !u!1 &8303888079557558925
 GameObject:

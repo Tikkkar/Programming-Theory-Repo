@@ -36,12 +36,12 @@ public class Turret : MonoBehaviour
         //Goi ham cap nhat vi tri cua muc tieu moi 0.5s/lan
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
-    // Tao ham de cap nhat vi tri cua muc tieu
+    // Tao phuong thuc de cap nhat vi tri cua muc tieu
     protected void UpdateTarget()
     {
         // Khai Bao Tim Enemies duoc luu tru trong Enemies voi Tag la Enemy.
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemytag);
-        // Luu tru khoang cach ngan nhat tu doituong Gameobject den vi tri cua Enemy;
+        // Luu tru khoang cach xa nhat tu doituong Gameobject den vi tri cua Enemy;
         float shortestDistance = Mathf.Infinity;
         //
         GameObject nearestEnemy = null;
@@ -55,6 +55,7 @@ public class Turret : MonoBehaviour
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
+            // Dieu kien kiem tra xem co enemy nao nam trong pham vi khong, va neu no nam trong pham vi thi do la muc tieu 
             if (nearestEnemy != null && shortestDistance <= range)
             {
                 target = nearestEnemy.transform;
@@ -75,7 +76,7 @@ public class Turret : MonoBehaviour
     {
         // Tham chieu den mot vi tri thap Phao de lay vi tri cho vien dan
         GameObject bulletGo = (GameObject) Instantiate(bulletPrefabs, bulletLocation.position, bulletPrefabs.transform.rotation);
-        //Tham chieu den tap lenh Bullet va, bien co ten bullet se lay thong tin tu tap lenh nay
+        //Tham chieu den tap lenh Bullet va, bien co ten bullet se lay thong tin tu tap lenh nay cua Gameobject Bullet tuong ung duoc gan vao.
         Bullet bullet = bulletGo.GetComponent<Bullet>();
         if (bullet != null)
         {

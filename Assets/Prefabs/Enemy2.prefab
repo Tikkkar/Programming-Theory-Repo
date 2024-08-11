@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6306549824473315946}
   - component: {fileID: 7179550812607685076}
   - component: {fileID: -5993399871192000819}
-  - component: {fileID: 7802496313197719358}
+  - component: {fileID: 105572760307578028}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -151,7 +151,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7802496313197719358
+--- !u!114 &105572760307578028
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,4 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107f1e17614aa7444b294c2b5e05c884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healE: 5
+  quaivat: {fileID: 0}
+  nhaChinh: {fileID: 2633911135129705194, guid: 724ae6f5998f1944cb3e8c259f28f90d, type: 3}
   enemyDestroy: 0

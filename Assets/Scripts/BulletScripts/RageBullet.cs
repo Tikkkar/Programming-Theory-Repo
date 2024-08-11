@@ -8,6 +8,7 @@ public class RageBullet : Bullet
     
     public RageBullet()
     {
+        speed = 30f;
         oxplosionRadius = 2f;
     }
  

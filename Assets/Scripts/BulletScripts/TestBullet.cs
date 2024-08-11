@@ -1,25 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.UI;
 
-public class FastTurrent : Turret
+public class TestBullet : MonoBehaviour
 {
-
     // Start is called before the first frame update
-   
-    public FastTurrent() 
+    void Start()
     {
-        fireRate = 2f;
-        range = 10f;
+        
     }
+
     // Update is called once per frame
     void Update()
     {
-        LockTaget();
+        
     }
-  
-
-
-
 }
